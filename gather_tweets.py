@@ -6,7 +6,7 @@ Created on Wed Apr 28 15:00:57 2021
 @author: teresabodart
 
 
-This file collects data from twitter, and saves it to csv files.  
+This file collects data from twitter, and saves it to a csv file.  
 It requires a file called `twitter_authentication.py` to be in this
 user directory, and that file must contain:
     
@@ -56,6 +56,7 @@ def tweets_to_lists(search_terms_dict):
     governor_tweets = []
     
     for gov in list(search_terms_dict.values()):
+        # Collect up to 100 tweets from each official governor's twitter account
         query = 'from:'+gov+'+-filter:retweets'
         tweet_list = collect(query)
         outtweets = [[tweet.id_str, tweet.created_at, tweet.user.screen_name, tweet.user.followers_count, tweet.user.created_at, tweet.user.verified, tweet.user.location, tweet.full_text, tweet.favorite_count, tweet.entities['hashtags']] for tweet in tweet_list]
